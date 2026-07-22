@@ -1,0 +1,279 @@
+@charset "UTF-8";
+
+:root {
+  --gold: #e7ad4b;
+  --gold-light: #f3c56e;
+  --black: #070809;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #120b07;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  overflow: auto;
+}
+
+.scene {
+  position: relative;
+  width: min(100vw, calc(100svh * 1122 / 1402));
+  aspect-ratio: 1122 / 1402;
+  background:
+    url("assets/quiet-letter-background.jpg")
+    center / 100% 100% no-repeat;
+  overflow: hidden;
+
+  opacity: 0;
+  filter: brightness(.68);
+  animation: sceneFadeIn 4.2s ease-out forwards;
+}
+
+/*
+  Very subtle warm shimmer over the existing candle flame.
+  It does not move or alter the candle image itself.
+*/
+.candle-glow {
+  position: absolute;
+  z-index: 1;
+  left: 5.2%;
+  top: 3.3%;
+  width: 6.2%;
+  aspect-ratio: 1 / 1.75;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 232, 150, .28) 0%,
+      rgba(255, 174, 54, .13) 42%,
+      rgba(255, 136, 26, 0) 72%
+    );
+  filter: blur(5px);
+  mix-blend-mode: screen;
+  animation:
+    candleAppear 1.2s ease-out 3.2s forwards,
+    candleFlicker 2.8s ease-in-out 4.4s infinite alternate;
+}
+
+/* The only interactive element. */
+.song-button {
+  position: absolute;
+  z-index: 3;
+  left: 27.3%;
+  top: 87.25%;
+  width: 44.2%;
+  height: 6.65%;
+
+  display: grid;
+  place-items: center;
+  padding: 0 4.5%;
+
+  border: 1px solid rgba(237, 179, 75, .98);
+  border-radius: clamp(9px, 1.15vw, 15px);
+
+  color: var(--gold);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.06) 0%,
+      rgba(255,255,255,.015) 40%,
+      rgba(0,0,0,.13) 100%
+    ),
+    var(--black);
+
+  box-shadow:
+    0 0 0 2px rgba(93,52,15,.78),
+    0 6px 14px rgba(35,14,2,.48),
+    0 0 10px rgba(232,166,58,.17),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 0 14px rgba(214,142,35,.04);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(9px, 1.38vw, 18px);
+  font-weight: 500;
+  letter-spacing: .045em;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0,0,0,.9);
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  opacity: 0;
+  transform: translateY(5px);
+  animation: buttonFadeIn 2.6s cubic-bezier(.22,.72,.28,1) 4.6s forwards;
+
+  transition:
+    transform 260ms ease,
+    color 260ms ease,
+    box-shadow 260ms ease,
+    background 260ms ease;
+}
+
+.play-circle {
+  position: absolute;
+  left: 6.5%;
+  top: 50%;
+  width: 11.5%;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  border: 1px solid rgba(242,187,84,.99);
+  border-radius: 50%;
+}
+
+.play-triangle {
+  position: absolute;
+  left: 36%;
+  top: 28%;
+  width: 36%;
+  height: 44%;
+  background: var(--gold-light);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.label {
+  position: absolute;
+  left: 20%;
+  right: 5%;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.song-button:hover,
+.song-button:focus-visible {
+  color: var(--gold-light);
+  transform: translateY(-2px) scale(1.008);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.09) 0%,
+      rgba(255,255,255,.025) 40%,
+      rgba(0,0,0,.09) 100%
+    ),
+    #111214;
+
+  box-shadow:
+    0 0 0 2px rgba(120,72,22,.88),
+    0 9px 19px rgba(35,14,2,.60),
+    0 0 19px rgba(239,181,75,.34),
+    inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+.song-button:active {
+  transform: translateY(0);
+}
+
+.song-button:focus-visible {
+  outline: 2px solid rgba(250,218,151,.98);
+  outline-offset: 4px;
+}
+
+@keyframes sceneFadeIn {
+  from {
+    opacity: 0;
+    filter: brightness(.68);
+  }
+  to {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+@keyframes buttonFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes candleAppear {
+  from { opacity: 0; }
+  to { opacity: .55; }
+}
+
+@keyframes candleFlicker {
+  0% {
+    opacity: .42;
+    transform: translateY(0) scale(.97, 1.01);
+  }
+  28% {
+    opacity: .53;
+    transform: translateY(-.4%) scale(1.02, .98);
+  }
+  57% {
+    opacity: .46;
+    transform: translateY(.25%) scale(.99, 1.03);
+  }
+  100% {
+    opacity: .58;
+    transform: translateY(-.2%) scale(1.03, .97);
+  }
+}
+
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 57%,
+      rgba(16, 8, 3, 0.08) 76%,
+      rgba(10, 5, 2, 0.22) 100%
+    );
+  animation: vignetteFadeIn 4.2s ease-out forwards;
+}
+
+@keyframes vignetteFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 520px) {
+  .song-button {
+    font-size: clamp(8px, 1.95vw, 12px);
+    letter-spacing: .025em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene,
+  .song-button,
+  .candle-glow,
+  .vignette {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .candle-glow {
+    opacity: 0;
+  }
+
+  .vignette {
+    opacity: 1;
+  }
+
+  .song-button {
+    transition: none;
+  }
+}
