@@ -277,3 +277,165 @@ body {
     transition: none;
   }
 }
+
+
+/* Final exit sequence: candle extinguishes, room fades to black, then the song opens. */
+.blackout {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: #000;
+  opacity: 0;
+}
+
+.scene.exiting {
+  animation:
+    sceneFadeIn 4.2s ease-out forwards,
+    sceneFadeOut 3.9s cubic-bezier(.45, .05, .55, .95) forwards;
+}
+
+.scene.exiting .song-button {
+  pointer-events: none;
+  animation:
+    buttonFadeIn 2.6s cubic-bezier(.22,.72,.28,1) 4.6s forwards,
+    buttonFinalGlow .55s ease-out forwards;
+}
+
+.scene.exiting .candle-glow {
+  animation: candleExtinguish 2.3s ease-out forwards;
+}
+
+.scene.exiting .vignette {
+  animation:
+    vignetteFadeIn 4.2s ease-out forwards,
+    vignetteClose 3.5s ease-in .25s forwards;
+}
+
+.scene.exiting .blackout {
+  animation: blackoutFade 1.45s ease-in 2.65s forwards;
+}
+
+@keyframes buttonFinalGlow {
+  0% {
+    color: var(--gold);
+    transform: translateY(0) scale(1);
+  }
+  55% {
+    color: #ffe2a2;
+    transform: translateY(0) scale(1.018);
+    box-shadow:
+      0 0 0 2px rgba(145, 89, 28, .96),
+      0 9px 22px rgba(35, 14, 2, .68),
+      0 0 28px rgba(239, 181, 75, .52),
+      inset 0 1px 0 rgba(255,255,255,.18);
+  }
+  100% {
+    color: var(--gold-light);
+    transform: translateY(0) scale(1.008);
+  }
+}
+
+@keyframes candleExtinguish {
+  0% {
+    opacity: .54;
+    transform: translateY(0) scale(.98, 1.02);
+    filter: blur(5px);
+  }
+  14% {
+    opacity: .78;
+    transform: translateY(-1.6%) scale(1.12, .92);
+  }
+  28% {
+    opacity: .38;
+    transform: translateY(.7%) scale(.86, 1.12);
+  }
+  41% {
+    opacity: .68;
+    transform: translateY(-1.2%) scale(1.06, .88);
+  }
+  58% {
+    opacity: .22;
+    transform: translateY(.5%) scale(.72, .96);
+  }
+  72% {
+    opacity: .34;
+    transform: translateY(-.4%) scale(.62, .78);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(6%) scale(.18, .08);
+    filter: blur(8px);
+  }
+}
+
+@keyframes sceneFadeOut {
+  0% {
+    opacity: 1;
+    filter: brightness(1) saturate(1);
+  }
+  22% {
+    opacity: 1;
+    filter: brightness(.82) saturate(.9);
+  }
+  52% {
+    opacity: .96;
+    filter: brightness(.48) saturate(.7);
+  }
+  78% {
+    opacity: .68;
+    filter: brightness(.16) saturate(.45);
+  }
+  100% {
+    opacity: 0;
+    filter: brightness(0) saturate(.2);
+  }
+}
+
+@keyframes vignetteClose {
+  from {
+    opacity: 1;
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0) 57%,
+        rgba(16, 8, 3, 0.08) 76%,
+        rgba(10, 5, 2, 0.22) 100%
+      );
+  }
+  to {
+    opacity: 1;
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, .25) 18%,
+        rgba(0, 0, 0, .72) 58%,
+        rgba(0, 0, 0, .98) 100%
+      );
+  }
+}
+
+@keyframes blackoutFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.exiting,
+  .scene.exiting .song-button,
+  .scene.exiting .candle-glow,
+  .scene.exiting .vignette,
+  .scene.exiting .blackout {
+    animation: none;
+  }
+
+  .scene.exiting {
+    opacity: 0;
+    filter: brightness(0);
+  }
+
+  .scene.exiting .blackout {
+    opacity: 1;
+  }
+}
+

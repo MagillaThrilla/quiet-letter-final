@@ -12,12 +12,11 @@
   <main class="scene" aria-label="A quiet letter">
     <span class="candle-glow" aria-hidden="true"></span>
     <span class="vignette" aria-hidden="true"></span>
+    <span class="blackout" aria-hidden="true"></span>
 
     <a
       class="song-button"
       href="https://m.youtube.com/watch?v=UCqQ0itHl1A"
-      target="_blank"
-      rel="noopener noreferrer"
       aria-label='Play "Maybe in Another Life" on YouTube'
     >
       <span class="play-circle" aria-hidden="true">
@@ -26,5 +25,34 @@
       <span class="label">MAYBE IN ANOTHER LIFE</span>
     </a>
   </main>
+
+  <script>
+    (() => {
+      const scene = document.querySelector(".scene");
+      const button = document.querySelector(".song-button");
+      const destination = button.href;
+      let isExiting = false;
+
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        if (isExiting) return;
+        isExiting = true;
+
+        button.setAttribute("aria-disabled", "true");
+        scene.classList.add("exiting");
+
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        const delay = prefersReducedMotion ? 250 : 4600;
+
+        window.setTimeout(() => {
+          window.location.href = destination;
+        }, delay);
+      });
+    })();
+  </script>
 </body>
 </html>
