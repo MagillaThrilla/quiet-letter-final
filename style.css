@@ -278,8 +278,8 @@ body {
   }
 }
 
-
-/* Final exit sequence: candle extinguishes, room fades to black, then the song opens. */
+/* Final exit sequence: the room dims first, the candle remains alive,
+   then briefly flares and becomes the last visible light before black. */
 .blackout {
   position: absolute;
   inset: 0;
@@ -292,28 +292,31 @@ body {
 .scene.exiting {
   animation:
     sceneFadeIn 4.2s ease-out forwards,
-    sceneFadeOut 3.9s cubic-bezier(.45, .05, .55, .95) forwards;
+    sceneFadeOut 7.1s cubic-bezier(.42, .04, .58, .96) forwards;
 }
 
 .scene.exiting .song-button {
   pointer-events: none;
   animation:
     buttonFadeIn 2.6s cubic-bezier(.22,.72,.28,1) 4.6s forwards,
-    buttonFinalGlow .55s ease-out forwards;
+    buttonFinalGlow .75s ease-out forwards,
+    buttonFadeAway 2.3s ease-in 1.15s forwards;
 }
 
 .scene.exiting .candle-glow {
-  animation: candleExtinguish 2.3s ease-out forwards;
+  animation:
+    candleHoldAndFlicker 4.55s ease-in-out forwards,
+    candleExtinguish 2.45s cubic-bezier(.35, .02, .38, 1) 4.55s forwards;
 }
 
 .scene.exiting .vignette {
   animation:
     vignetteFadeIn 4.2s ease-out forwards,
-    vignetteClose 3.5s ease-in .25s forwards;
+    vignetteClose 6.45s ease-in .35s forwards;
 }
 
 .scene.exiting .blackout {
-  animation: blackoutFade 1.45s ease-in 2.65s forwards;
+  animation: blackoutFade 1.15s ease-in 6.75s forwards;
 }
 
 @keyframes buttonFinalGlow {
@@ -336,36 +339,94 @@ body {
   }
 }
 
-@keyframes candleExtinguish {
+@keyframes buttonFadeAway {
+  from {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  to {
+    opacity: 0;
+    filter: brightness(.35);
+  }
+}
+
+@keyframes candleHoldAndFlicker {
   0% {
     opacity: .54;
     transform: translateY(0) scale(.98, 1.02);
     filter: blur(5px);
   }
   14% {
-    opacity: .78;
-    transform: translateY(-1.6%) scale(1.12, .92);
+    opacity: .47;
+    transform: translateY(.25%) scale(.96, 1.04);
   }
-  28% {
-    opacity: .38;
-    transform: translateY(.7%) scale(.86, 1.12);
+  29% {
+    opacity: .61;
+    transform: translateY(-.45%) scale(1.04, .97);
   }
-  41% {
-    opacity: .68;
-    transform: translateY(-1.2%) scale(1.06, .88);
+  44% {
+    opacity: .49;
+    transform: translateY(.2%) scale(.99, 1.03);
   }
-  58% {
+  60% {
+    opacity: .64;
+    transform: translateY(-.35%) scale(1.06, .96);
+  }
+  75% {
+    opacity: .51;
+    transform: translateY(.18%) scale(.98, 1.04);
+  }
+  89% {
+    opacity: .67;
+    transform: translateY(-.45%) scale(1.07, .95);
+  }
+  100% {
+    opacity: .57;
+    transform: translateY(0) scale(1, 1.02);
+    filter: blur(5px);
+  }
+}
+
+@keyframes candleExtinguish {
+  0% {
+    opacity: .57;
+    transform: translateY(0) scale(1, 1.02);
+    filter: blur(5px);
+  }
+  12% {
+    opacity: .76;
+    transform: translateY(-1.1%) scale(1.10, .94);
+    filter: blur(4.5px);
+  }
+  24% {
+    opacity: .86;
+    transform: translateY(-1.9%) scale(1.16, .90);
+    filter: blur(4px);
+  }
+  39% {
+    opacity: .49;
+    transform: translateY(.35%) scale(.88, 1.08);
+    filter: blur(5px);
+  }
+  54% {
+    opacity: .36;
+    transform: translateY(-.35%) scale(.72, .89);
+    filter: blur(5.8px);
+  }
+  69% {
     opacity: .22;
-    transform: translateY(.5%) scale(.72, .96);
+    transform: translateY(.7%) scale(.55, .65);
+    filter: blur(6.4px);
   }
-  72% {
-    opacity: .34;
-    transform: translateY(-.4%) scale(.62, .78);
+  83% {
+    opacity: .10;
+    transform: translateY(2.6%) scale(.34, .30);
+    filter: blur(7px);
   }
   100% {
     opacity: 0;
-    transform: translateY(6%) scale(.18, .08);
-    filter: blur(8px);
+    transform: translateY(7%) scale(.10, .04);
+    filter: blur(9px);
   }
 }
 
@@ -374,17 +435,25 @@ body {
     opacity: 1;
     filter: brightness(1) saturate(1);
   }
-  22% {
+  18% {
     opacity: 1;
-    filter: brightness(.82) saturate(.9);
+    filter: brightness(.88) saturate(.94);
   }
-  52% {
-    opacity: .96;
-    filter: brightness(.48) saturate(.7);
+  39% {
+    opacity: 1;
+    filter: brightness(.67) saturate(.82);
+  }
+  60% {
+    opacity: .98;
+    filter: brightness(.40) saturate(.64);
   }
   78% {
-    opacity: .68;
-    filter: brightness(.16) saturate(.45);
+    opacity: .88;
+    filter: brightness(.20) saturate(.46);
+  }
+  91% {
+    opacity: .48;
+    filter: brightness(.07) saturate(.30);
   }
   100% {
     opacity: 0;
@@ -393,7 +462,7 @@ body {
 }
 
 @keyframes vignetteClose {
-  from {
+  0% {
     opacity: 1;
     background:
       radial-gradient(
@@ -403,14 +472,24 @@ body {
         rgba(10, 5, 2, 0.22) 100%
       );
   }
-  to {
+  52% {
     opacity: 1;
     background:
       radial-gradient(
         ellipse at center,
-        rgba(0, 0, 0, .25) 18%,
-        rgba(0, 0, 0, .72) 58%,
-        rgba(0, 0, 0, .98) 100%
+        rgba(0, 0, 0, .08) 38%,
+        rgba(0, 0, 0, .42) 70%,
+        rgba(0, 0, 0, .86) 100%
+      );
+  }
+  100% {
+    opacity: 1;
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, .34) 16%,
+        rgba(0, 0, 0, .78) 57%,
+        rgba(0, 0, 0, .99) 100%
       );
   }
 }
@@ -438,4 +517,3 @@ body {
     opacity: 1;
   }
 }
-
