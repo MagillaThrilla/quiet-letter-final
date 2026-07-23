@@ -16,7 +16,7 @@
 
     <a
       class="song-button"
-      href="https://m.youtube.com/watch?v=UCqQ0itHl1A"
+      href="https://youtu.be/UCqQ0itHl1A"
       aria-label='Play "Maybe in Another Life" on YouTube'
     >
       <span class="play-circle" aria-hidden="true">
@@ -28,10 +28,49 @@
 
   <script>
     (() => {
+      const VIDEO_ID = "UCqQ0itHl1A";
+      const WEB_URL = `https://youtu.be/${VIDEO_ID}`;
+      const IOS_APP_URL = `youtube://watch?v=${VIDEO_ID}`;
+
       const scene = document.querySelector(".scene");
       const button = document.querySelector(".song-button");
-      const destination = button.href;
+
       let isExiting = false;
+      let fallbackTimer = null;
+
+      const isAppleMobile = () =>
+        /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+      const cancelFallback = () => {
+        if (fallbackTimer !== null) {
+          window.clearTimeout(fallbackTimer);
+          fallbackTimer = null;
+        }
+      };
+
+      window.addEventListener("pagehide", cancelFallback);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) cancelFallback();
+      });
+
+      const openSong = () => {
+        if (!isAppleMobile()) {
+          window.location.assign(WEB_URL);
+          return;
+        }
+
+        /*
+          On iPhone/iPad, try the YouTube app first.
+          If the app is unavailable, return to the normal YouTube web page.
+          The fallback is cancelled automatically if Safari leaves the page.
+        */
+        fallbackTimer = window.setTimeout(() => {
+          window.location.assign(WEB_URL);
+        }, 1300);
+
+        window.location.href = IOS_APP_URL;
+      };
 
       button.addEventListener("click", (event) => {
         event.preventDefault();
@@ -46,11 +85,8 @@
           "(prefers-reduced-motion: reduce)"
         ).matches;
 
-        const delay = prefersReducedMotion ? 250 : 4600;
-
-        window.setTimeout(() => {
-          window.location.href = destination;
-        }, delay);
+        const endingDelay = prefersReducedMotion ? 250 : 4600;
+        window.setTimeout(openSong, endingDelay);
       });
     })();
   </script>
