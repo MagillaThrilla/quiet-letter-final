@@ -1,20 +1,17 @@
-# Quiet Letter — Final Build
+# Quiet Letter — iPhone 16 Responsive Build
 
-## Run locally
-Open `index.html` in Safari, Chrome, or Firefox.
+This build keeps the existing desktop composition and adds a dedicated portrait/iPhone layout.
 
-## Deploy on GitHub Pages
-Upload the contents of this folder to the repository root and enable GitHub Pages from the main branch.
+## Changes
 
-## Important implementation choices
-- The `Do not use these` folder was excluded.
-- The flame animation folder was excluded.
-- The candle and flame already present in `background-room.png` are used as-is.
-- Daniel and Angela are separate cleaned transparent PNG assets and are blended into the parchment with CSS.
-- The letter is live HTML text so each paragraph can fade in separately.
-- The wording is preserved exactly, with the corrected final line: “Take care of yourself.”
+- Uses `100dvh` so the scene responds to Safari's changing browser controls.
+- Keeps the parchment, text, sketches, signature, and button proportionally aligned.
+- Positions the music button directly beneath the parchment and above the mobile browser toolbar area.
+- Crops the room background for portrait viewing while retaining the candlelit atmosphere.
+- Removes the missing infinity-image reference that caused the broken-image icon.
+- Keeps all revealed content visible until the music button is clicked.
+- Excludes repository metadata and macOS metadata from the deliverable.
 
-## Timing revision
-- All text, signature, sketches, and infinity remain visible indefinitely after the opening completes.
-- The ending sequence starts only when the music button is clicked.
-- Letter typography was enlarged to occupy more of the parchment.
+## Deploy
+
+Upload the contents of this folder to the root of the GitHub Pages repository.

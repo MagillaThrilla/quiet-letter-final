@@ -8,7 +8,6 @@ const lines = [...document.querySelectorAll(".line")];
 const signature = document.querySelector(".signature");
 const daniel = document.querySelector(".daniel");
 const angela = document.querySelector(".angela");
-const infinity = document.querySelector(".infinity");
 
 let openingComplete = false;
 let endingStarted = false;
@@ -38,9 +37,6 @@ async function playOpening() {
   await sleep(900);
   angela.classList.add("visible");
 
-  await sleep(950);
-  infinity.classList.add("visible");
-
   await sleep(1050);
   button.classList.add("visible");
 
@@ -62,9 +58,6 @@ async function playEnding(event) {
   button.classList.add("pressed");
   await sleep(420);
   button.classList.remove("visible");
-
-  await sleep(900);
-  infinity.classList.remove("visible");
 
   await sleep(900);
   daniel.classList.remove("visible");
