@@ -199,8 +199,8 @@ body {
 
 .signature {
   left: 50%;
-  bottom: 33%;
-  width: 25%;
+  bottom: 24%;
+  width: 22%;
   height: auto;
   transform: translateX(-50%);
 }
