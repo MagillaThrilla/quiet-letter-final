@@ -324,62 +324,70 @@ body {
 
 /* =========================================================
    IPHONE / PORTRAIT LAYOUT
-
-   The paper and button share the same viewport-based geometry,
-   keeping the full experience above Safari's bottom controls.
    ========================================================= */
 
 @media (max-aspect-ratio: 3 / 4) {
   html,
-  body {
-    height: 100dvh;
-    min-height: 100dvh;
-  }
-
+  body,
   .experience {
+    width: 100%;
     height: 100dvh;
-    min-height: 100dvh;
+    min-height: 100svh;
   }
 
   .scene {
-    --phone-paper-height: min(135.2vw, 74dvh);
-    --phone-paper-half-height: min(67.6vw, 37dvh);
-    --phone-paper-top: calc(50% - 4dvh);
-
     width: 100vw;
     height: 100dvh;
-    min-height: 100dvh;
+    min-height: 100svh;
   }
 
+  /*
+   * The source background is landscape, so some cropping is
+   * unavoidable on a portrait phone. This position keeps more
+   * of the candle and central room visible.
+   */
   .room {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: 24% center;
+    object-position: 31% center;
   }
 
-  .room-shade {
-    background:
-      radial-gradient(
-        ellipse at 50% 48%,
-        transparent 0 43%,
-        rgba(0, 0, 0, .08) 66%,
-        rgba(0, 0, 0, .36) 100%
-      );
-  }
-
+  /*
+   * Preserve the parchment's actual proportions instead of
+   * stretching it independently in width and height.
+   */
   .paper-wrap {
     left: 50%;
-    top: var(--phone-paper-top);
-    width: min(90vw, 49.2dvh);
-    height: var(--phone-paper-height);
+    top: 47%;
+
+    width: min(90vw, 58dvh);
+    height: auto;
+    aspect-ratio: 1023 / 1537;
+
+    transform:
+      translate(-50%, -50%)
+      scale(.985);
   }
 
+  .scene.is-paper-visible .paper-wrap {
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  /*
+   * Larger phone typography, still tied directly to the
+   * parchment width through cqw units.
+   */
   .letter-copy {
-    left: 9.5%;
-    right: 9.5%;
-    top: 6.5%;
-    font-size: 5.2cqw;
-    line-height: 1.08;
-    letter-spacing: .25px;
+    left: 8.5%;
+    right: 7%;
+    top: 6%;
+
+    font-size: 5.25cqw;
+    line-height: 1.07;
+    letter-spacing: .35px;
   }
 
   .line {
@@ -388,76 +396,79 @@ body {
 
   .salutation {
     font-size: 1.55em;
-    margin-bottom: .58em;
+    line-height: 1;
+    margin-bottom: .62em;
   }
 
   .signature {
-    width: 24%;
-    bottom: 27.5%;
+    width: 25%;
+    bottom: 22%;
   }
 
   .daniel {
     left: 5%;
     bottom: 1.5%;
-    height: 26%;
-  }
 
-  .angela {
-    right: 7%;
-    bottom: 1.5%;
-    height: 24%;
-  }
-
-  .music-button {
-    top: calc(
-      var(--phone-paper-top)
-      + var(--phone-paper-half-height)
-      + 8px
-    );
-    bottom: auto;
-    width: min(58vw, 250px);
-  }
-}
-
-/* Short iPhone viewport while Safari controls are expanded. */
-@media (max-aspect-ratio: 3 / 4) and (max-height: 700px) {
-  .scene {
-    --phone-paper-height: min(135.2vw, 72dvh);
-    --phone-paper-half-height: min(67.6vw, 36dvh);
-    --phone-paper-top: calc(50% - 3.5dvh);
-  }
-
-  .letter-copy {
-    font-size: 4.95cqw;
-    line-height: 1.06;
-  }
-
-  .line {
-    margin-bottom: .66em;
-  }
-
-  .signature {
-    bottom: 27%;
-  }
-
-  .daniel {
+    width: auto;
     height: 25%;
   }
 
   .angela {
+    right: 6%;
+    bottom: 1.5%;
+
+    width: auto;
     height: 23%;
   }
 
   .music-button {
-    width: min(55vw, 235px);
+    width: min(58vw, 270px);
+    bottom: max(1.5%, env(safe-area-inset-bottom));
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
+/* =========================================================
+   IPHONE 16 AND SIMILAR WIDTHS
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .paper-wrap {
+    width: 91vw;
+    top: 47%;
+  }
+
+  .letter-copy {
+    left: 8.5%;
+    right: 6.5%;
+    top: 5.8%;
+
+    font-size: 5.4cqw;
+    line-height: 1.06;
+  }
+
+  .line {
+    margin-bottom: .68em;
+  }
+
+  .salutation {
+    font-size: 1.55em;
+    margin-bottom: .58em;
+  }
+
+  .signature {
+    width: 26%;
+    bottom: 22%;
+  }
+
+  .daniel {
+    height: 24%;
+  }
+
+  .angela {
+    height: 22%;
+  }
+
+  .music-button {
+    width: min(60vw, 275px);
   }
 }
