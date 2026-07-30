@@ -11,11 +11,9 @@ html,
 body {
   width: 100%;
   height: 100%;
-  min-height: 100%;
   margin: 0;
   overflow: hidden;
   background: #000;
-  overscroll-behavior: none;
 }
 
 body {
@@ -25,14 +23,13 @@ body {
 .experience {
   width: 100%;
   height: 100%;
-  min-height: 100dvh;
   display: grid;
   place-items: center;
   background: #000;
 }
 
 /* =========================================================
-   MAIN SCENE — desktop composition remains unchanged
+   MAIN SCENE
    ========================================================= */
 
 .scene {
@@ -61,6 +58,7 @@ body {
   object-fit: cover;
   opacity: 0;
   transform: scale(1.012);
+
   transition:
     opacity 2.2s var(--ease-cinematic),
     transform 8s ease-out;
@@ -74,6 +72,7 @@ body {
 .room-shade {
   z-index: 2;
   pointer-events: none;
+
   background:
     radial-gradient(
       ellipse at 43% 48%,
@@ -81,6 +80,7 @@ body {
       rgba(0, 0, 0, .08) 60%,
       rgba(0, 0, 0, .42) 100%
     );
+
   opacity: 0;
   transition: opacity 2.4s ease;
 }
@@ -96,15 +96,23 @@ body {
 .paper-wrap {
   position: absolute;
   z-index: 4;
+
   left: 50%;
   top: 49.5%;
+
   width: 45.8%;
   height: 88%;
+
   container-type: inline-size;
   overflow: hidden;
+
   opacity: 0;
   filter: blur(1.5px);
-  transform: translate(-50%, -50%) scale(.985);
+
+  transform:
+    translate(-50%, -50%)
+    scale(.985);
+
   transition:
     opacity 2s var(--ease-cinematic),
     transform 2.8s var(--ease-cinematic),
@@ -114,41 +122,56 @@ body {
 .scene.is-paper-visible .paper-wrap {
   opacity: 1;
   filter: blur(0);
-  transform: translate(-50%, -50%) scale(1);
+
+  transform:
+    translate(-50%, -50%)
+    scale(1);
 }
 
 .paper {
   position: absolute;
   inset: 0;
+
   width: 100%;
   height: 100%;
+
   object-fit: fill;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .45));
+
+  filter:
+    drop-shadow(
+      0 10px 20px
+      rgba(0, 0, 0, .45)
+    );
 }
 
 /* =========================================================
    LETTER TEXT
-   Text scales from the parchment width through cqw units.
    ========================================================= */
 
 .letter-copy {
   position: absolute;
   z-index: 5;
+
   left: 10%;
   right: 25%;
   top: 7%;
+
   color: var(--ink);
+
   font-family:
     "Allura",
     "Snell Roundhand",
     "Apple Chancery",
     "Segoe Script",
     cursive;
+
   font-style: normal;
   font-weight: 100;
+
   font-size: 5.9cqw;
   line-height: 1.1;
   letter-spacing: .5px;
+
   text-shadow:
     .25px 0 rgba(35, 20, 12, .25),
     0 .25px rgba(35, 20, 12, .25);
@@ -156,9 +179,11 @@ body {
 
 .line {
   margin: 0 0 .9em;
+
   opacity: 0;
   filter: blur(.8px);
   transform: translateY(6px);
+
   transition:
     opacity 1.8s var(--ease-cinematic),
     transform 1.8s var(--ease-cinematic),
@@ -184,11 +209,17 @@ body {
 .paper-art {
   position: absolute;
   z-index: 6;
+
   width: auto;
   opacity: 0;
+
   object-fit: contain;
-  transition: opacity 1.8s var(--ease-cinematic);
+
+  transition:
+    opacity 1.8s var(--ease-cinematic);
+
   will-change: opacity;
+
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -197,11 +228,17 @@ body {
   opacity: 1;
 }
 
+/* =========================================================
+   SIGNATURE
+   ========================================================= */
+
 .signature {
   left: 50%;
-  bottom: 24%;
-  width: 22%;
+  bottom: 22%;
+
+  width: 25%;
   height: auto;
+
   transform: translateX(-50%);
 }
 
@@ -210,23 +247,36 @@ body {
   transform: translateX(-50%);
 }
 
+/* =========================================================
+   DANIEL SKETCH
+   ========================================================= */
+
 .daniel {
   left: 3%;
   bottom: 2%;
+
   width: auto;
   height: 29%;
 }
 
+.daniel.visible {
+  opacity: .78;
+}
+
+/* =========================================================
+   ANGELA SKETCH
+   ========================================================= */
+
 .angela {
   right: 8%;
   bottom: 2%;
+
   width: auto;
   height: 27%;
 }
 
-.daniel.visible,
 .angela.visible {
-  opacity: .58;
+  opacity: .78;
 }
 
 /* =========================================================
@@ -236,15 +286,24 @@ body {
 .music-button {
   position: absolute;
   z-index: 7;
+
   left: 50%;
   bottom: .5%;
+
   width: clamp(150px, 22%, 280px);
+
   border: 0;
   padding: 0;
+
   background: transparent;
+
   opacity: 0;
-  transform: translate(-50%, 8px);
+
+  transform:
+    translate(-50%, 8px);
+
   cursor: pointer;
+
   transition:
     opacity 1.2s var(--ease-cinematic),
     transform 1.4s var(--ease-cinematic),
@@ -253,18 +312,25 @@ body {
 
 .music-button img {
   display: block;
+
   width: 100%;
   height: auto;
+
   pointer-events: none;
 }
 
 .music-button.visible {
   opacity: 1;
-  transform: translate(-50%, 0);
+
+  transform:
+    translate(-50%, 0);
 }
 
 .music-button:focus-visible {
-  outline: 2px solid rgba(228, 190, 104, .85);
+  outline:
+    2px solid
+    rgba(228, 190, 104, .85);
+
   outline-offset: 5px;
   border-radius: 999px;
 }
@@ -272,7 +338,10 @@ body {
 .music-button.pressed {
   filter:
     brightness(1.28)
-    drop-shadow(0 0 8px rgba(235, 190, 85, .55));
+    drop-shadow(
+      0 0 8px
+      rgba(235, 190, 85, .55)
+    );
 }
 
 /* =========================================================
@@ -281,10 +350,14 @@ body {
 
 .blackout {
   z-index: 20;
+
   background: #000;
+
   opacity: 1;
   pointer-events: none;
-  transition: opacity 1.2s ease;
+
+  transition:
+    opacity 1.2s ease;
 }
 
 .blackout.open {
@@ -319,11 +392,11 @@ body {
 
 .scene.is-holding .daniel.visible,
 .scene.is-holding .angela.visible {
-  opacity: .58 !important;
+  opacity: .88 !important;
 }
 
 /* =========================================================
-   IPHONE / PORTRAIT LAYOUT
+   IPHONE / PORTRAIT
    ========================================================= */
 
 @media (max-aspect-ratio: 3 / 4) {
@@ -341,11 +414,6 @@ body {
     min-height: 100svh;
   }
 
-  /*
-   * The source background is landscape, so some cropping is
-   * unavoidable on a portrait phone. This position keeps more
-   * of the candle and central room visible.
-   */
   .room {
     width: 100%;
     height: 100%;
@@ -353,15 +421,11 @@ body {
     object-position: 31% center;
   }
 
-  /*
-   * Preserve the parchment's actual proportions instead of
-   * stretching it independently in width and height.
-   */
   .paper-wrap {
     left: 50%;
     top: 47%;
 
-    width: min(90vw, 58dvh);
+    width: 91vw;
     height: auto;
     aspect-ratio: 1023 / 1537;
 
@@ -376,83 +440,24 @@ body {
       scale(1);
   }
 
-  /*
-   * Larger phone typography, still tied directly to the
-   * parchment width through cqw units.
-   */
   .letter-copy {
-    left: 8.5%;
-    right: 7%;
-    top: 6%;
-
-    font-size: 5.25cqw;
-    line-height: 1.07;
-    letter-spacing: .35px;
-  }
-
-  .line {
-    margin-bottom: .72em;
-  }
-
-  .salutation {
-    font-size: 1.55em;
-    line-height: 1;
-    margin-bottom: .62em;
-  }
-
-  .signature {
-    width: 25%;
-    bottom: 22%;
-  }
-
-  .daniel {
-    left: 5%;
-    bottom: 1.5%;
-
-    width: auto;
-    height: 25%;
-  }
-
-  .angela {
+    left: 8%;
     right: 6%;
-    bottom: 1.5%;
+    top: 5.5%;
 
-    width: auto;
-    height: 23%;
-  }
-
-  .music-button {
-    width: min(58vw, 270px);
-    bottom: max(1.5%, env(safe-area-inset-bottom));
-  }
-}
-
-/* =========================================================
-   IPHONE 16 AND SIMILAR WIDTHS
-   ========================================================= */
-
-@media (max-width: 430px) {
-  .paper-wrap {
-    width: 91vw;
-    top: 47%;
-  }
-
-  .letter-copy {
-    left: 8.5%;
-    right: 6.5%;
-    top: 5.8%;
-
-    font-size: 5.4cqw;
-    line-height: 1.06;
+    font-size: 6.25cqw;
+    line-height: 1.04;
+    letter-spacing: .25px;
   }
 
   .line {
-    margin-bottom: .68em;
+    margin-bottom: .58em;
   }
 
   .salutation {
-    font-size: 1.55em;
-    margin-bottom: .58em;
+    font-size: 1.5em;
+    line-height: 1;
+    margin-bottom: .5em;
   }
 
   .signature {
@@ -461,14 +466,78 @@ body {
   }
 
   .daniel {
+    left: 5%;
+    bottom: 1.5%;
+
+    width: auto;
     height: 24%;
   }
 
   .angela {
+    right: 6%;
+    bottom: 1.5%;
+
+    width: auto;
     height: 22%;
   }
 
   .music-button {
     width: min(60vw, 275px);
+    bottom: max(1.5%, env(safe-area-inset-bottom));
+  }
+}
+
+/* =========================================================
+   SMALL IPHONES
+   ========================================================= */
+
+@media (max-width: 390px) {
+  .paper-wrap {
+    width: 92vw;
+    top: 47%;
+  }
+
+  .letter-copy {
+    left: 7.5%;
+    right: 5.5%;
+    top: 5.2%;
+
+    font-size: 6.45cqw;
+    line-height: 1.03;
+  }
+
+  .line {
+    margin-bottom: .54em;
+  }
+
+  .salutation {
+    font-size: 1.5em;
+    margin-bottom: .48em;
+  }
+
+  .signature {
+    width: 27%;
+    bottom: 21.5%;
+  }
+
+  .daniel {
+    height: 23%;
+  }
+
+  .angela {
+    height: 21%;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
   }
 }
