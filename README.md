@@ -15,3 +15,9 @@ This build keeps the existing desktop composition and adds a dedicated portrait/
 ## Deploy
 
 Upload the contents of this folder to the root of the GitHub Pages repository.
+
+
+## July 30, 2026 iPhone fix
+- iPhone signature uses `top: 73%` inside the parchment, so it sits below the final line and between the two sketches.
+- Desktop signature placement remains unchanged.
+- CSS and asset query versions were updated to prevent stale Safari caching.

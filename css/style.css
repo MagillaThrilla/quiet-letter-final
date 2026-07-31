@@ -50,6 +50,15 @@ body {
   height: 100%;
 }
 
+
+.scene > picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 /* =========================================================
    ROOM
    ========================================================= */
@@ -462,10 +471,13 @@ body {
     margin-bottom: .46em;
   }
 
-  /* Signature moved down only on portrait phones */
+  /* iPhone-only signature placement.
+     Using top instead of bottom makes its position predictable
+     across Safari's changing viewport height. */
   .signature {
     width: 26%;
-    bottom: 16%;
+    top: 73%;
+    bottom: auto;
   }
 
   .daniel {
@@ -524,10 +536,10 @@ body {
     margin-bottom: .44em;
   }
 
-  /* Signature moved slightly farther down on smaller iPhones */
   .signature {
     width: 27%;
-    bottom: 15.5%;
+    top: 73%;
+    bottom: auto;
   }
 
   .daniel {
