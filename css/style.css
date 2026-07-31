@@ -1,6 +1,5 @@
 :root {
   --ease-cinematic: cubic-bezier(.22, .61, .36, 1);
-  --ink: #24170f;
 }
 
 * {
@@ -16,119 +15,101 @@ body {
   background: #000;
 }
 
-body {
-  font-family: "Cormorant Garamond", Georgia, serif;
-}
-
 .experience {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  background: #000;
-}
-
-/* =========================================================
-   MAIN SCENE
-   ========================================================= */
-
-.scene {
   position: relative;
-  width: min(100vw, calc(100vh * 1.19147));
-  height: min(100vh, calc(100vw / 1.19147));
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  background: #050302;
+  background: #020100;
 }
 
-.layer,
-.room-shade,
-.blackout {
+.ambient-background {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* =========================================================
-   ROOM
-   ========================================================= */
-
-.room {
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.012);
-
-  transition:
-    opacity 2.2s var(--ease-cinematic),
-    transform 8s ease-out;
-}
-
-.scene.is-room-visible .room {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.room-shade {
-  z-index: 2;
-  pointer-events: none;
+  inset: -6%;
+  z-index: 0;
 
   background:
-    radial-gradient(
-      ellipse at 43% 48%,
-      transparent 0 38%,
-      rgba(0, 0, 0, .08) 60%,
-      rgba(0, 0, 0, .42) 100%
-    );
+    linear-gradient(
+      rgba(0, 0, 0, .23),
+      rgba(0, 0, 0, .23)
+    ),
+    url("../assets/approved-final.jpg?v=pixel-exact-4")
+    center / cover no-repeat;
 
+  filter:
+    blur(28px)
+    brightness(.53);
+
+  transform: scale(1.1);
   opacity: 0;
-  transition: opacity 2.4s ease;
+
+  transition:
+    opacity 3.6s var(--ease-cinematic);
 }
 
-.scene.is-room-visible .room-shade {
+.experience.room-visible .ambient-background {
   opacity: 1;
 }
 
 /* =========================================================
-   PARCHMENT
+   SCENE
    ========================================================= */
 
-.paper-wrap {
+.scene-frame {
   position: absolute;
-  z-index: 4;
+  inset: 0;
+  z-index: 3;
 
-  left: 50%;
-  top: 49.5%;
+  display: grid;
+  place-items: center;
 
-  width: 45.8%;
-  height: 88%;
+  overflow: hidden;
+}
+
+.scene-canvas {
+  position: relative;
+
+  height: 100dvh;
+  min-height: 100svh;
+
+  aspect-ratio: 9 / 16;
 
   container-type: inline-size;
-  overflow: hidden;
 
   opacity: 0;
-  filter: blur(1.5px);
 
   transform:
-    translate(-50%, -50%)
-    scale(.985);
+    translate(0, 0)
+    scale(1.035);
+
+  transform-origin: 55% 54%;
 
   transition:
-    opacity 2s var(--ease-cinematic),
-    transform 2.8s var(--ease-cinematic),
-    filter 2.4s ease;
+    opacity 3.6s var(--ease-cinematic),
+    transform 3.1s var(--ease-cinematic);
+
+  will-change:
+    opacity,
+    transform;
 }
 
-.scene.is-paper-visible .paper-wrap {
+.experience.room-visible .scene-canvas {
   opacity: 1;
-  filter: blur(0);
 
   transform:
-    translate(-50%, -50%)
-    scale(1);
+    translate(0, 0)
+    scale(1.035);
 }
 
-.paper {
+.experience.reading .scene-canvas {
+  transform:
+    translate(-1.2%, -.8%)
+    scale(1.115);
+}
+
+.scene-image {
   position: absolute;
   inset: 0;
 
@@ -137,211 +118,441 @@ body {
 
   object-fit: fill;
 
-  filter:
-    drop-shadow(
-      0 10px 20px
-      rgba(0, 0, 0, .45)
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* =========================================================
+   FADE COVERS
+   ========================================================= */
+
+.cover {
+  z-index: 2;
+
+  opacity: 1;
+
+  pointer-events: none;
+
+  transition:
+    opacity 2.1s var(--ease-cinematic);
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.cover.revealed {
+  opacity: 0;
+}
+
+/* =========================================================
+   SALUTATION
+   ========================================================= */
+
+.cover-salutation {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 13% 4.5% at 40.5% 35.1%,
+      #000 34%,
+      rgba(0, 0, 0, .96) 56%,
+      transparent 82%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 13% 4.5% at 40.5% 35.1%,
+      #000 34%,
+      rgba(0, 0, 0, .96) 56%,
+      transparent 82%
     );
 }
 
 /* =========================================================
-   LETTER TEXT
+   PARAGRAPH 1
    ========================================================= */
 
-.letter-copy {
+.cover-paragraph-1 {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 27% 6.5% at 52.4% 40.2%,
+      #000 35%,
+      rgba(0, 0, 0, .97) 60%,
+      transparent 86%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 27% 6.5% at 52.4% 40.2%,
+      #000 35%,
+      rgba(0, 0, 0, .97) 60%,
+      transparent 86%
+    );
+}
+
+/* =========================================================
+   PARAGRAPH 2
+   ========================================================= */
+
+.cover-paragraph-2 {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 25% 6% at 53.7% 46.4%,
+      #000 36%,
+      rgba(0, 0, 0, .97) 61%,
+      transparent 86%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 25% 6% at 53.7% 46.4%,
+      #000 36%,
+      rgba(0, 0, 0, .97) 61%,
+      transparent 86%
+    );
+}
+
+/* =========================================================
+   PARAGRAPH 3
+   ========================================================= */
+
+.cover-paragraph-3 {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 27% 6% at 53.6% 52.4%,
+      #000 36%,
+      rgba(0, 0, 0, .97) 61%,
+      transparent 87%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 27% 6% at 53.6% 52.4%,
+      #000 36%,
+      rgba(0, 0, 0, .97) 61%,
+      transparent 87%
+    );
+}
+
+/* =========================================================
+   CLOSING LINE
+   ========================================================= */
+
+.cover-closing {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 18% 4.8% at 55% 57.3%,
+      #000 34%,
+      rgba(0, 0, 0, .97) 59%,
+      transparent 86%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 18% 4.8% at 55% 57.3%,
+      #000 34%,
+      rgba(0, 0, 0, .97) 59%,
+      transparent 86%
+    );
+}
+
+/* =========================================================
+   SIGNATURE
+   ========================================================= */
+
+.cover-signature {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 17% 7% at 55.4% 62.3%,
+      #000 32%,
+      rgba(0, 0, 0, .97) 57%,
+      transparent 84%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 17% 7% at 55.4% 62.3%,
+      #000 32%,
+      rgba(0, 0, 0, .97) 57%,
+      transparent 84%
+    );
+}
+
+/* =========================================================
+   DANIEL
+   ========================================================= */
+
+.cover-daniel {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 20% 18.5% at 38.5% 69.5%,
+      #000 39%,
+      rgba(0, 0, 0, .97) 65%,
+      transparent 91%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 20% 18.5% at 38.5% 69.5%,
+      #000 39%,
+      rgba(0, 0, 0, .97) 65%,
+      transparent 91%
+    );
+}
+
+/* =========================================================
+   ANGELA — EXACT-SCENE COVER, NO OFF-COLOR PATCH
+   ========================================================= */
+
+.cover-angela {
   position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 2.1s var(--ease-cinematic);
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 17.5% 18.5% at 72.2% 69.5%,
+      #000 38%,
+      rgba(0, 0, 0, .98) 64%,
+      transparent 92%
+    );
+  mask-image:
+    radial-gradient(
+      ellipse 17.5% 18.5% at 72.2% 69.5%,
+      #000 38%,
+      rgba(0, 0, 0, .98) 64%,
+      transparent 92%
+    );
+}
+
+.cover-angela.revealed {
+  opacity: 0;
+}
+
+.angela-blank-base {
+  z-index: 0;
+}
+
+/*
+  The original blank photograph contains a diagonal pen inside Angela's
+  reveal area. This concealer samples a clean neighboring section from that
+  exact same photograph, so its color and lighting match the parchment.
+*/
+.random-pen-concealer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 23% 15% at 83.5% 67%,
+      #000 48%,
+      rgba(0, 0, 0, .98) 66%,
+      transparent 91%
+    );
+  mask-image:
+    radial-gradient(
+      ellipse 23% 15% at 83.5% 67%,
+      #000 48%,
+      rgba(0, 0, 0, .98) 66%,
+      transparent 91%
+    );
+}
+
+.random-pen-concealer > img {
+  transform: translateX(30%);
+  transform-origin: center;
+}
+
+/* =========================================================
+   ORIGINAL LINK COVER
+   ========================================================= */
+
+.cover-link {
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 14.5% 3.8% at 55.1% 75.8%,
+      #000 32%,
+      rgba(0, 0, 0, .98) 59%,
+      transparent 87%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 14.5% 3.8% at 55.1% 75.8%,
+      #000 32%,
+      rgba(0, 0, 0, .98) 59%,
+      transparent 87%
+    );
+}
+
+/* =========================================================
+   CORRECT FOUNTAIN PEN
+   ========================================================= */
+
+.correct-pen {
   z-index: 5;
 
-  left: 10%;
-  right: 25%;
-  top: 7%;
+  pointer-events: none;
 
-  color: var(--ink);
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 18.5% 12.5% at 89.5% 82.2%,
+      #000 38%,
+      rgba(0, 0, 0, .99) 68%,
+      transparent 94%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 18.5% 12.5% at 89.5% 82.2%,
+      #000 38%,
+      rgba(0, 0, 0, .99) 68%,
+      transparent 94%
+    );
+}
+
+/* =========================================================
+   CLICKABLE HANDWRITTEN SONG LINK
+   ========================================================= */
+
+.song-hit-target {
+  position: absolute;
+  z-index: 6;
+
+  left: 42.5%;
+  top: 73.8%;
+
+  width: 25%;
+  min-height: 4.8%;
+
+  display: grid;
+  place-items: center;
+
+  border: 0;
+
+  padding:
+    .1em
+    .25em;
+
+  background: transparent;
+  color: #382011;
 
   font-family:
     "Allura",
     "Snell Roundhand",
     "Apple Chancery",
-    "Segoe Script",
     cursive;
 
-  font-style: normal;
-  font-weight: 100;
+  font-size: 3.2cqw;
 
-  font-size: 5.9cqw;
-  line-height: 1.1;
-  letter-spacing: .5px;
-
-  text-shadow:
-    .25px 0 rgba(35, 20, 12, .25),
-    0 .25px rgba(35, 20, 12, .25);
-}
-
-.line {
-  margin: 0 0 .9em;
-
-  opacity: 0;
-  filter: blur(.8px);
-  transform: translateY(6px);
-
-  transition:
-    opacity 1.8s var(--ease-cinematic),
-    transform 1.8s var(--ease-cinematic),
-    filter 1.8s ease;
-}
-
-.line.visible {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0);
-}
-
-.salutation {
-  font-size: 1.55em;
   line-height: 1;
-  margin-bottom: .7em;
-}
-
-/* =========================================================
-   PAPER ART
-   ========================================================= */
-
-.paper-art {
-  position: absolute;
-  z-index: 6;
-
-  width: auto;
-  opacity: 0;
-
-  object-fit: contain;
-
-  transition:
-    opacity 1.8s var(--ease-cinematic);
-
-  will-change: opacity;
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.paper-art.visible {
-  opacity: 1;
-}
-
-/* =========================================================
-   SIGNATURE — DESKTOP
-   ========================================================= */
-
-.signature {
-  left: 50%;
-  bottom: 22%;
-
-  width: 25%;
-  height: auto;
-
-  transform: translateX(-50%);
-}
-
-.signature.visible {
-  opacity: 1;
-  transform: translateX(-50%);
-}
-
-/* =========================================================
-   DANIEL SKETCH
-   ========================================================= */
-
-.daniel {
-  left: 3%;
-  bottom: 2%;
-
-  width: auto;
-  height: 29%;
-}
-
-.daniel.visible {
-  opacity: .78;
-}
-
-/* =========================================================
-   ANGELA SKETCH
-   ========================================================= */
-
-.angela {
-  right: 8%;
-  bottom: 2%;
-
-  width: auto;
-  height: 27%;
-}
-
-.angela.visible {
-  opacity: .78;
-}
-
-/* =========================================================
-   MUSIC BUTTON
-   ========================================================= */
-
-.music-button {
-  position: absolute;
-  z-index: 7;
-
-  left: 50%;
-  bottom: .5%;
-
-  width: clamp(150px, 22%, 280px);
-
-  border: 0;
-  padding: 0;
-
-  background: transparent;
+  white-space: nowrap;
 
   opacity: 0;
-
-  transform:
-    translate(-50%, 8px);
-
-  cursor: pointer;
-
-  transition:
-    opacity 1.2s var(--ease-cinematic),
-    transform 1.4s var(--ease-cinematic),
-    filter .35s ease;
-}
-
-.music-button img {
-  display: block;
-
-  width: 100%;
-  height: auto;
 
   pointer-events: none;
-}
-
-.music-button.visible {
-  opacity: 1;
+  cursor: pointer;
 
   transform:
-    translate(-50%, 0);
-}
+    translateY(5px)
+    rotate(-3deg);
 
-.music-button:focus-visible {
-  outline:
-    2px solid
-    rgba(228, 190, 104, .85);
+  transform-origin: center;
 
-  outline-offset: 5px;
   border-radius: 999px;
+
+  transition:
+    opacity 1.5s var(--ease-cinematic),
+    transform 1.5s var(--ease-cinematic),
+    background-color .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
 }
 
-.music-button.pressed {
-  filter:
-    brightness(1.28)
-    drop-shadow(
-      0 0 8px
-      rgba(235, 190, 85, .55)
+.song-hit-target::before {
+  content:
+    "Maybe in Another Life";
+}
+
+.song-hit-target::after {
+  content: "";
+
+  position: absolute;
+
+  left: 15%;
+  right: 15%;
+  bottom: 7%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(56, 32, 17, .42),
+      transparent
     );
+}
+
+.song-hit-target.visible {
+  opacity: .96;
+
+  pointer-events: auto;
+
+  transform:
+    translateY(0)
+    rotate(-3deg);
+}
+
+.song-hit-target:hover,
+.song-hit-target:focus-visible {
+  background:
+    rgba(55, 31, 15, .055);
+
+  box-shadow:
+    0 0 0 1px
+    rgba(72, 42, 22, .14);
+
+  outline: none;
+}
+
+.song-hit-target.pressed {
+  filter:
+    brightness(.72);
+}
+
+/* =========================================================
+   READING SHADE
+   ========================================================= */
+
+.reading-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    rgba(4, 2, 1, .22);
+
+  opacity: 0;
+
+  transition:
+    opacity 1.5s ease;
+}
+
+.experience.reading .reading-shade {
+  opacity: 1;
 }
 
 /* =========================================================
@@ -349,15 +560,18 @@ body {
    ========================================================= */
 
 .blackout {
+  position: absolute;
+  inset: 0;
   z-index: 20;
 
   background: #000;
 
   opacity: 1;
+
   pointer-events: none;
 
   transition:
-    opacity 1.2s ease;
+    opacity 1.25s ease;
 }
 
 .blackout.open {
@@ -366,133 +580,64 @@ body {
 
 .blackout.close {
   opacity: 1;
-  transition-duration: 2.5s;
-}
 
-.scene.ending .room,
-.scene.ending .room-shade {
-  opacity: 0;
-  transition-duration: 2.8s;
+  transition-duration:
+    2.8s;
 }
 
 /* =========================================================
-   HOLD STATE
+   DESKTOP
    ========================================================= */
 
-.scene.is-holding .line.visible {
-  opacity: 1 !important;
-  filter: blur(0) !important;
-  transform: translateY(0) !important;
-}
+@media (min-width: 701px) and (orientation: landscape) {
+  .scene-canvas {
+    height:
+      min(104vh, 1020px);
+  }
 
-.scene.is-holding .signature.visible {
-  opacity: 1 !important;
-  transform: translateX(-50%) !important;
-}
+  .experience.reading .scene-canvas {
+    transform:
+      translate(-1%, -.7%)
+      scale(1.115);
+  }
 
-.scene.is-holding .daniel.visible,
-.scene.is-holding .angela.visible {
-  opacity: .88 !important;
+  .song-hit-target {
+    left: 42.5%;
+    top: 73.8%;
+
+    width: 25%;
+    min-height: 4.8%;
+
+    font-size: 3.2cqw;
+  }
 }
 
 /* =========================================================
    IPHONE / PORTRAIT
    ========================================================= */
 
-@media (max-aspect-ratio: 3 / 4) {
-  html,
-  body,
-  .experience {
-    width: 100%;
+@media (max-width: 700px), (orientation: portrait) {
+  .scene-canvas {
     height: 100dvh;
     min-height: 100svh;
-  }
-
-  .scene {
-    width: 100vw;
-    height: 100dvh;
-    min-height: 100svh;
-  }
-
-  .room {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .paper-wrap {
-    left: 50%;
-    top: 47%;
-
-    width: 91vw;
-    height: auto;
-
-    aspect-ratio: 1023 / 1537;
-
-    transform:
-      translate(-50%, -50%)
-      scale(.985);
-  }
-
-  .scene.is-paper-visible .paper-wrap {
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-  }
-
-  .letter-copy {
-    left: 10.5%;
-    right: 4%;
-    top: 5%;
-
-    font-size: 6.9cqw;
-    line-height: 1.03;
-    letter-spacing: .25px;
-  }
-
-  .line {
-    margin-bottom: .52em;
-  }
-
-  .salutation {
-    font-size: 1.78em;
-    line-height: .98;
-    margin-bottom: .44em;
-  }
-
-  /* iPhone signature: placed in the open space below the letter text. */
-  .signature {
-    width: 20%;
-    top: 71.5%;
-    bottom: auto;
-  }
-
-  .daniel {
-    left: 5%;
-    bottom: 1.5%;
 
     width: auto;
-    height: 22%;
   }
 
-  .angela {
-    right: 6%;
-    bottom: 1.5%;
-
-    width: auto;
-    height: 20%;
+  .experience.reading .scene-canvas {
+    transform:
+      translate(-1.4%, -.7%)
+      scale(1.095);
   }
 
-  .music-button {
-    width: min(60vw, 275px);
+  .song-hit-target {
+    left: 42%;
+    top: 73.8%;
 
-    bottom:
-      max(
-        1.5%,
-        env(safe-area-inset-bottom)
-      );
+    width: 26%;
+    min-height: 4.8%;
+
+    font-size: 3.25cqw;
   }
 }
 
@@ -501,56 +646,13 @@ body {
    ========================================================= */
 
 @media (max-width: 390px) {
-  .paper-wrap {
-    width: 92vw;
-    top: 47%;
-  }
+  .song-hit-target {
+    left: 41.5%;
+    top: 73.8%;
 
-  .letter-copy {
-    left: 10%;
-    right: 3.5%;
-    top: 4.8%;
+    width: 27%;
 
-    font-size: 7cqw;
-    line-height: 1.02;
-  }
-
-  .line {
-    margin-bottom: .48em;
-  }
-
-  .salutation {
-    font-size: 1.8em;
-    line-height: .98;
-    margin-bottom: .42em;
-  }
-
-  /* Keep the same relative signature placement on smaller phones. */
-  .signature {
-    width: 20%;
-    top: 71.5%;
-    bottom: auto;
-  }
-
-  .daniel {
-    height: 21%;
-  }
-
-  .angela {
-    height: 19%;
-  }
-}
-
-
-/* Final iPhone-only signature override. */
-@media screen and (orientation: portrait) and (max-width: 768px) {
-  .paper-wrap .signature {
-    left: 50% !important;
-    top: 71.5% !important;
-    bottom: auto !important;
-    width: 20% !important;
-    height: auto !important;
-    transform: translateX(-50%) !important;
+    font-size: 3.15cqw;
   }
 }
 
@@ -562,7 +664,10 @@ body {
   *,
   *::before,
   *::after {
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
+    transition-duration:
+      .01ms !important;
+
+    animation-duration:
+      .01ms !important;
   }
 }

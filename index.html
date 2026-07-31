@@ -2,157 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  >
-
-  <meta name="theme-color" content="#050302">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#020100">
   <title>Quiet Letter</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap"
-    rel="stylesheet"
-  >
-
-  <link
-    rel="stylesheet"
-    href="css/style.css?v=iphone-signature-v6"
-  >
-
-  <style>
-    @media screen and (orientation: portrait) and (max-width: 768px) {
-      #signature {
-        left: 50% !important;
-        top: 71.5% !important;
-        bottom: auto !important;
-        width: 20% !important;
-        height: auto !important;
-        transform: translateX(-50%) !important;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=pixel-exact-4">
 </head>
-
 <body>
-  <main class="experience" aria-label="A quiet letter">
-    <section class="scene" id="scene">
+  <main class="experience" id="experience" aria-label="A quiet letter">
+    <div class="ambient-background" aria-hidden="true"></div>
 
-      <!--
-        Portrait phones use background-room-iphone.png.
-        Desktop and landscape screens use background-room.png.
-      -->
-      <picture>
-        <source
-          media="(max-width: 768px) and (orientation: portrait)"
-          srcset="assets/background-room-iphone.png?v=iphone-signature-v6"
-          type="image/png"
-        >
-
+    <section class="scene-frame" aria-label="Candlelit desk and letter">
+      <div class="scene-canvas" id="sceneCanvas">
+        <!-- The exact approved final image is the foundation. -->
         <img
-          class="layer room"
-          src="assets/background-room.png?v=iphone-signature-v6"
+          class="scene-image approved-final"
+          src="assets/approved-final.jpg?v=pixel-exact-4"
           alt=""
           aria-hidden="true"
           fetchpriority="high"
-          decoding="async"
-        >
-      </picture>
-
-      <div
-        class="room-shade"
-        aria-hidden="true"
-      ></div>
-
-      <article
-        class="paper-wrap"
-        aria-label="Letter to Angela"
-      >
-        <img
-          class="paper"
-          src="assets/parchment.png?v=iphone-signature-v6"
-          alt=""
-          aria-hidden="true"
-          decoding="async"
         >
 
-        <div class="letter-copy">
-          <p class="line salutation">
-            Angela,
-          </p>
-
-          <p class="line">
-            Thank you for loving me<br>
-            and showing me what love really was.
-          </p>
-
-          <p class="line">
-            You will always hold<br>
-            a very special place in my heart.
-          </p>
-
-          <p class="line">
-            Thank you for the memories<br>
-            that will stay with me forever.
-          </p>
-
-          <p class="line">
-            Take care of yourself.
-          </p>
+        <!--
+          Each cover is the exact blank scene, masked to one element.
+          Removing a cover reveals the exact approved pixels beneath it.
+        -->
+        <img class="scene-image cover cover-salutation" src="assets/blank-room.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
+        <img class="scene-image cover cover-paragraph-1" src="assets/blank-room.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
+        <img class="scene-image cover cover-paragraph-2" src="assets/blank-room.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
+        <img class="scene-image cover cover-paragraph-3" src="assets/blank-room.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
+        <img class="scene-image cover cover-closing" src="assets/blank-room.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
+        <img class="scene-image cover cover-signature" src="assets/blank-room.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
+        <img class="scene-image cover cover-daniel" src="assets/blank-room.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
+        <div class="cover cover-angela" aria-hidden="true">
+          <img class="scene-image angela-blank-base" src="assets/blank-room.jpg?v=pixel-exact-4" alt="">
+          <div class="random-pen-concealer">
+            <img class="scene-image" src="assets/blank-room.jpg?v=pixel-exact-4" alt="">
+          </div>
         </div>
 
-        <img
-          id="signature" class="paper-art signature"
-          src="assets/signature.png?v=iphone-signature-v6"
-          alt="— Daniel"
-          decoding="async"
-        >
+        <img class="scene-image cover cover-link" src="assets/blank-room.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
 
-        <img
-          class="paper-art daniel"
-          src="assets/daniel-sketch.png?v=iphone-signature-v6"
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-        >
+        <!-- The approved fountain pen remains visible for the entire scene. -->
+        <img class="scene-image correct-pen" src="assets/approved-final.jpg?v=pixel-exact-4" alt="" aria-hidden="true">
 
-        <img
-          class="paper-art angela"
-          src="assets/angela-sketch.png?v=iphone-signature-v6"
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-        >
-      </article>
-
-      <button
-        class="music-button"
-        id="musicButton"
-        type="button"
-        aria-label="Play Maybe in Another Life"
-      >
-        <img
-          src="assets/music-button.png?v=iphone-signature-v6"
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-        >
-      </button>
-
-      <div
-        class="blackout"
-        id="blackout"
-        aria-hidden="true"
-      ></div>
-
+        <!-- Transparent hit target aligned over the handwritten title in the approved artwork. -->
+        <button
+          class="song-hit-target"
+          id="songLink"
+          type="button"
+          aria-label="Open Maybe in Another Life"
+        ></button>
+      </div>
     </section>
+
+    <div class="reading-shade" aria-hidden="true"></div>
+    <div class="blackout" id="blackout" aria-hidden="true"></div>
+
+    <audio id="matchSound" preload="auto" src="assets/Match_Strike.mp3"></audio>
   </main>
 
-  <script src="js/app.js?v=iphone-signature-v6"></script>
+  <script src="js/app.js?v=pixel-exact-4"></script>
 </body>
 </html>
