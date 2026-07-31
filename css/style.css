@@ -229,7 +229,7 @@ body {
 }
 
 /* =========================================================
-   SIGNATURE
+   SIGNATURE — DESKTOP
    ========================================================= */
 
 .signature {
@@ -417,8 +417,9 @@ body {
   .room {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
-    object-position: 31% center;
+    object-position: center;
   }
 
   .paper-wrap {
@@ -427,6 +428,7 @@ body {
 
     width: 91vw;
     height: auto;
+
     aspect-ratio: 1023 / 1537;
 
     transform:
@@ -446,23 +448,24 @@ body {
     top: 5.4%;
 
     font-size: 6.9cqw;
-    line-height: 1.08;
+    line-height: 1.04;
     letter-spacing: .25px;
   }
 
   .line {
-    margin-bottom: .72em;
+    margin-bottom: .56em;
   }
 
   .salutation {
     font-size: 1.78em;
     line-height: .98;
-    margin-bottom: .58em;
+    margin-bottom: .46em;
   }
 
+  /* Signature moved down only on portrait phones */
   .signature {
     width: 26%;
-    bottom: 31%;
+    bottom: 16%;
   }
 
   .daniel {
@@ -483,7 +486,12 @@ body {
 
   .music-button {
     width: min(60vw, 275px);
-    bottom: max(1.5%, env(safe-area-inset-bottom));
+
+    bottom:
+      max(
+        1.5%,
+        env(safe-area-inset-bottom)
+      );
   }
 }
 
@@ -503,22 +511,23 @@ body {
     top: 5.2%;
 
     font-size: 7cqw;
-    line-height: 1.07;
+    line-height: 1.03;
   }
 
   .line {
-    margin-bottom: .68em;
+    margin-bottom: .52em;
   }
 
   .salutation {
     font-size: 1.8em;
     line-height: .98;
-    margin-bottom: .54em;
+    margin-bottom: .44em;
   }
 
+  /* Signature moved slightly farther down on smaller iPhones */
   .signature {
-    width: 26%;
-    bottom: 30%;
+    width: 27%;
+    bottom: 15.5%;
   }
 
   .daniel {
