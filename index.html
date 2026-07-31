@@ -2,42 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
   <meta name="theme-color" content="#050302">
+
   <title>Quiet Letter</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=iphone-text-2">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/style.css?v=iphone-background-1">
 </head>
+
 <body>
   <main class="experience" aria-label="A quiet letter">
     <section class="scene" id="scene">
-      <img class="layer room" src="assets/background-room.png" alt="">
+
+      <!--
+        Portrait iPhones use background-room-iphone.png.
+        Desktop and landscape screens use background-room.png.
+      -->
+      <picture>
+        <source
+          media="(max-width: 768px) and (orientation: portrait)"
+          srcset="assets/background-room-iphone.png?v=1"
+        >
+
+        <img
+          class="layer room"
+          src="assets/background-room.png?v=1"
+          alt=""
+        >
+      </picture>
+
       <div class="room-shade"></div>
 
       <article class="paper-wrap" aria-label="Letter to Angela">
-        <img class="paper" src="assets/parchment.png" alt="">
+        <img
+          class="paper"
+          src="assets/parchment.png"
+          alt=""
+        >
+
         <div class="letter-copy">
           <p class="line salutation">Angela,</p>
-          <p class="line">Thank you for loving me<br>and showing me what love really was.</p>
-          <p class="line">You will always hold<br>a very special place in my heart.</p>
-          <p class="line">Thank you for the memories<br>that will stay with me forever.</p>
-          <p class="line">Take care of yourself.</p>
+
+          <p class="line">
+            Thank you for loving me<br>
+            and showing me what love really was.
+          </p>
+
+          <p class="line">
+            You will always hold<br>
+            a very special place in my heart.
+          </p>
+
+          <p class="line">
+            Thank you for the memories<br>
+            that will stay with me forever.
+          </p>
+
+          <p class="line">
+            Take care of yourself.
+          </p>
         </div>
 
-        <img class="paper-art signature" src="assets/signature.png?v=6" alt="Daniel">
-        <img class="paper-art daniel" src="assets/daniel-sketch.png?v=6" alt="">
-        <img class="paper-art angela" src="assets/angela-sketch.png?v=6" alt="">
+        <img
+          class="paper-art signature"
+          src="assets/signature.png"
+          alt="Daniel"
+        >
+
+        <img
+          class="paper-art daniel"
+          src="assets/daniel-sketch.png"
+          alt=""
+        >
+
+        <img
+          class="paper-art angela"
+          src="assets/angela-sketch.png"
+          alt=""
+        >
       </article>
 
-      <button class="music-button" id="musicButton" type="button" aria-label="Play Maybe in Another Life">
-        <img src="assets/music-button.png" alt="Maybe in Another Life">
+      <button
+        class="music-button"
+        id="musicButton"
+        type="button"
+        aria-label="Play Maybe in Another Life"
+      >
+        <img
+          src="assets/music-button.png"
+          alt="Maybe in Another Life"
+        >
       </button>
 
       <div class="blackout" id="blackout"></div>
     </section>
   </main>
-  <script src="js/app.js?v=8"></script>
+
+  <script src="js/app.js?v=iphone-background-1"></script>
 </body>
 </html>
