@@ -50,15 +50,6 @@ body {
   height: 100%;
 }
 
-
-.scene > picture {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 /* =========================================================
    ROOM
    ========================================================= */
@@ -454,29 +445,27 @@ body {
   .letter-copy {
     left: 10.5%;
     right: 4%;
-    top: 5.4%;
+    top: 5%;
 
     font-size: 6.9cqw;
-    line-height: 1.04;
+    line-height: 1.03;
     letter-spacing: .25px;
   }
 
   .line {
-    margin-bottom: .56em;
+    margin-bottom: .52em;
   }
 
   .salutation {
     font-size: 1.78em;
     line-height: .98;
-    margin-bottom: .46em;
+    margin-bottom: .44em;
   }
 
-  /* iPhone-only signature placement.
-     Using top instead of bottom makes its position predictable
-     across Safari's changing viewport height. */
+  /* iPhone signature: placed in the open space below the letter text. */
   .signature {
-    width: 26%;
-    top: 73%;
+    width: 20%;
+    top: 71.5%;
     bottom: auto;
   }
 
@@ -485,7 +474,7 @@ body {
     bottom: 1.5%;
 
     width: auto;
-    height: 24%;
+    height: 22%;
   }
 
   .angela {
@@ -493,7 +482,7 @@ body {
     bottom: 1.5%;
 
     width: auto;
-    height: 22%;
+    height: 20%;
   }
 
   .music-button {
@@ -520,34 +509,48 @@ body {
   .letter-copy {
     left: 10%;
     right: 3.5%;
-    top: 5.2%;
+    top: 4.8%;
 
     font-size: 7cqw;
-    line-height: 1.03;
+    line-height: 1.02;
   }
 
   .line {
-    margin-bottom: .52em;
+    margin-bottom: .48em;
   }
 
   .salutation {
     font-size: 1.8em;
     line-height: .98;
-    margin-bottom: .44em;
+    margin-bottom: .42em;
   }
 
+  /* Keep the same relative signature placement on smaller phones. */
   .signature {
-    width: 27%;
-    top: 73%;
+    width: 20%;
+    top: 71.5%;
     bottom: auto;
   }
 
   .daniel {
-    height: 23%;
+    height: 21%;
   }
 
   .angela {
-    height: 21%;
+    height: 19%;
+  }
+}
+
+
+/* Final iPhone-only signature override. */
+@media screen and (orientation: portrait) and (max-width: 768px) {
+  .paper-wrap .signature {
+    left: 50% !important;
+    top: 71.5% !important;
+    bottom: auto !important;
+    width: 20% !important;
+    height: auto !important;
+    transform: translateX(-50%) !important;
   }
 }
 

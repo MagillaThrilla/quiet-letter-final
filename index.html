@@ -22,8 +22,21 @@
 
   <link
     rel="stylesheet"
-    href="css/style.css?v=20260730-signature-final"
+    href="css/style.css?v=iphone-signature-v6"
   >
+
+  <style>
+    @media screen and (orientation: portrait) and (max-width: 768px) {
+      #signature {
+        left: 50% !important;
+        top: 71.5% !important;
+        bottom: auto !important;
+        width: 20% !important;
+        height: auto !important;
+        transform: translateX(-50%) !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -37,13 +50,13 @@
       <picture>
         <source
           media="(max-width: 768px) and (orientation: portrait)"
-          srcset="assets/background-room-iphone.png?v=20260730-signature-final"
+          srcset="assets/background-room-iphone.png?v=iphone-signature-v6"
           type="image/png"
         >
 
         <img
           class="layer room"
-          src="assets/background-room.png?v=20260730-signature-final"
+          src="assets/background-room.png?v=iphone-signature-v6"
           alt=""
           aria-hidden="true"
           fetchpriority="high"
@@ -62,7 +75,7 @@
       >
         <img
           class="paper"
-          src="assets/parchment.png?v=20260730-signature-final"
+          src="assets/parchment.png?v=iphone-signature-v6"
           alt=""
           aria-hidden="true"
           decoding="async"
@@ -94,15 +107,15 @@
         </div>
 
         <img
-          class="paper-art signature"
-          src="assets/signature.png?v=20260730-signature-final"
+          id="signature" class="paper-art signature"
+          src="assets/signature.png?v=iphone-signature-v6"
           alt="— Daniel"
           decoding="async"
         >
 
         <img
           class="paper-art daniel"
-          src="assets/daniel-sketch.png?v=20260730-signature-final"
+          src="assets/daniel-sketch.png?v=iphone-signature-v6"
           alt=""
           aria-hidden="true"
           decoding="async"
@@ -110,7 +123,7 @@
 
         <img
           class="paper-art angela"
-          src="assets/angela-sketch.png?v=20260730-signature-final"
+          src="assets/angela-sketch.png?v=iphone-signature-v6"
           alt=""
           aria-hidden="true"
           decoding="async"
@@ -124,7 +137,7 @@
         aria-label="Play Maybe in Another Life"
       >
         <img
-          src="assets/music-button.png?v=20260730-signature-final"
+          src="assets/music-button.png?v=iphone-signature-v6"
           alt=""
           aria-hidden="true"
           decoding="async"
@@ -140,6 +153,6 @@
     </section>
   </main>
 
-  <script src="js/app.js?v=20260730-signature-final"></script>
+  <script src="js/app.js?v=iphone-signature-v6"></script>
 </body>
 </html>
