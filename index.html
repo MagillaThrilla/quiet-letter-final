@@ -20,7 +20,10 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="css/style.css?v=iphone-background-1">
+  <link
+    rel="stylesheet"
+    href="css/style.css?v=iphone-background-3"
+  >
 </head>
 
 <body>
@@ -28,33 +31,47 @@
     <section class="scene" id="scene">
 
       <!--
-        Portrait iPhones use background-room-iphone.png.
+        Portrait phones use background-room-iphone.png.
         Desktop and landscape screens use background-room.png.
       -->
       <picture>
         <source
           media="(max-width: 768px) and (orientation: portrait)"
-          srcset="assets/background-room-iphone.png?v=1"
+          srcset="assets/background-room-iphone.png?v=3"
+          type="image/png"
         >
 
         <img
           class="layer room"
-          src="assets/background-room.png?v=1"
+          src="assets/background-room.png?v=3"
           alt=""
+          aria-hidden="true"
+          fetchpriority="high"
+          decoding="async"
         >
       </picture>
 
-      <div class="room-shade"></div>
+      <div
+        class="room-shade"
+        aria-hidden="true"
+      ></div>
 
-      <article class="paper-wrap" aria-label="Letter to Angela">
+      <article
+        class="paper-wrap"
+        aria-label="Letter to Angela"
+      >
         <img
           class="paper"
-          src="assets/parchment.png"
+          src="assets/parchment.png?v=3"
           alt=""
+          aria-hidden="true"
+          decoding="async"
         >
 
         <div class="letter-copy">
-          <p class="line salutation">Angela,</p>
+          <p class="line salutation">
+            Angela,
+          </p>
 
           <p class="line">
             Thank you for loving me<br>
@@ -78,20 +95,25 @@
 
         <img
           class="paper-art signature"
-          src="assets/signature.png"
-          alt="Daniel"
+          src="assets/signature.png?v=3"
+          alt="— Daniel"
+          decoding="async"
         >
 
         <img
           class="paper-art daniel"
-          src="assets/daniel-sketch.png"
+          src="assets/daniel-sketch.png?v=3"
           alt=""
+          aria-hidden="true"
+          decoding="async"
         >
 
         <img
           class="paper-art angela"
-          src="assets/angela-sketch.png"
+          src="assets/angela-sketch.png?v=3"
           alt=""
+          aria-hidden="true"
+          decoding="async"
         >
       </article>
 
@@ -102,15 +124,22 @@
         aria-label="Play Maybe in Another Life"
       >
         <img
-          src="assets/music-button.png"
-          alt="Maybe in Another Life"
+          src="assets/music-button.png?v=3"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
         >
       </button>
 
-      <div class="blackout" id="blackout"></div>
+      <div
+        class="blackout"
+        id="blackout"
+        aria-hidden="true"
+      ></div>
+
     </section>
   </main>
 
-  <script src="js/app.js?v=iphone-background-1"></script>
+  <script src="js/app.js?v=iphone-background-3"></script>
 </body>
 </html>
