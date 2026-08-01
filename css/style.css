@@ -485,7 +485,6 @@ body {
 }
 
 .song-hit-target::before {
-  content: "▶";
 
   display: grid;
   place-items: center;
@@ -504,7 +503,7 @@ body {
 
   padding-left: .08em;
 
-  opacity: .82;
+  opacity: .92;
 }
 
 .song-title-line {
