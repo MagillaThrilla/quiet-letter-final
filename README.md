@@ -1,11 +1,8 @@
-# Quiet Letter — Pixel-Exact v4
-
-This build removes the off-color Angela reveal patch without changing the approved final artwork.
+# Quiet Letter — v5 Stacked Link
 
 Changes:
-- Angela is concealed with the exact `blank-room.jpg` scene instead of a differently colored parchment patch.
-- The unwanted diagonal pen is concealed using a feathered sample from the same photographed parchment.
-- The approved fountain pen remains visible throughout the scene.
-- The existing text, signature, figures, link size/tilt, room timing, desktop layout, and iPhone layout remain unchanged.
-
-Upload every file and folder inside this project folder to the root of the GitHub Pages repository.
+- Stacked song button text: “Maybe in” / “Another life”.
+- Added a subtle parchment-style button treatment and “Tap to play” affordance.
+- Button scales with the 9:16 scene using container query units.
+- Match sound begins at 1.50 seconds so the audible strike aligns with the room fade-in.
+- Cache version updated to pixel-exact-5.

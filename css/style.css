@@ -35,7 +35,7 @@ body {
       rgba(0, 0, 0, .23),
       rgba(0, 0, 0, .23)
     ),
-    url("../assets/approved-final.jpg?v=pixel-exact-4")
+    url("../assets/approved-final.jpg?v=pixel-exact-5")
     center / cover no-repeat;
 
   filter:
@@ -302,19 +302,25 @@ body {
 }
 
 /* =========================================================
-   ANGELA — EXACT-SCENE COVER, NO OFF-COLOR PATCH
+   ANGELA
    ========================================================= */
 
 .cover-angela {
   position: absolute;
   inset: 0;
   z-index: 2;
+
   width: 100%;
   height: 100%;
+
   overflow: hidden;
+
   opacity: 1;
+
   pointer-events: none;
-  transition: opacity 2.1s var(--ease-cinematic);
+
+  transition:
+    opacity 2.1s var(--ease-cinematic);
 
   -webkit-mask-image:
     radial-gradient(
@@ -323,6 +329,7 @@ body {
       rgba(0, 0, 0, .98) 64%,
       transparent 92%
     );
+
   mask-image:
     radial-gradient(
       ellipse 17.5% 18.5% at 72.2% 69.5%,
@@ -340,16 +347,13 @@ body {
   z-index: 0;
 }
 
-/*
-  The original blank photograph contains a diagonal pen inside Angela's
-  reveal area. This concealer samples a clean neighboring section from that
-  exact same photograph, so its color and lighting match the parchment.
-*/
 .random-pen-concealer {
   position: absolute;
   inset: 0;
   z-index: 1;
+
   overflow: hidden;
+
   pointer-events: none;
 
   -webkit-mask-image:
@@ -359,6 +363,7 @@ body {
       rgba(0, 0, 0, .98) 66%,
       transparent 91%
     );
+
   mask-image:
     radial-gradient(
       ellipse 23% 15% at 83.5% 67%,
@@ -369,8 +374,11 @@ body {
 }
 
 .random-pen-concealer > img {
-  transform: translateX(30%);
-  transform-origin: center;
+  transform:
+    translateX(30%);
+
+  transform-origin:
+    center;
 }
 
 /* =========================================================
@@ -422,29 +430,30 @@ body {
 }
 
 /* =========================================================
-   CLICKABLE HANDWRITTEN SONG LINK
+   HANDWRITTEN SONG LINK
    ========================================================= */
 
 .song-hit-target {
   position: absolute;
   z-index: 6;
 
-  left: 42.5%;
-  top: 73.8%;
+  left: 52.5%;
+  top: 74%;
 
-  width: 25%;
-  min-height: 4.8%;
+  width: 18%;
+  min-height: 8%;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
 
   border: 0;
-
-  padding:
-    .1em
-    .25em;
-
   background: transparent;
+  box-shadow: none;
+
   color: #382011;
 
   font-family:
@@ -453,84 +462,148 @@ body {
     "Apple Chancery",
     cursive;
 
-  font-size: 3.2cqw;
-
-  line-height: 1;
-  white-space: nowrap;
+  font-size: 3.25cqw;
+  line-height: .82;
+  text-align: center;
 
   opacity: 0;
-
   pointer-events: none;
   cursor: pointer;
 
   transform:
-    translateY(5px)
+    translate(-50%, 5px)
     rotate(-3deg);
 
   transform-origin: center;
 
-  border-radius: 999px;
-
   transition:
     opacity 1.5s var(--ease-cinematic),
     transform 1.5s var(--ease-cinematic),
-    background-color .25s ease,
-    box-shadow .25s ease,
     filter .25s ease;
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 .song-hit-target::before {
-  content:
-    "Maybe in Another Life";
+  content: "▶";
+
+  display: grid;
+  place-items: center;
+
+  width: 1.55em;
+  height: 1.55em;
+
+  margin-bottom: .18em;
+
+  border: 1px solid rgba(56, 32, 17, .42);
+  border-radius: 50%;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .42em;
+  line-height: 1;
+
+  padding-left: .08em;
+
+  opacity: .82;
+}
+
+.song-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.song-action {
+  display: block;
+
+  margin-top: .5em;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: .28em;
+  font-style: italic;
+  font-weight: 600;
+
+  line-height: 1;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  opacity: .55;
 }
 
 .song-hit-target::after {
   content: "";
 
-  position: absolute;
-
-  left: 15%;
-  right: 15%;
-  bottom: 7%;
-
+  width: 72%;
   height: 1px;
+
+  margin-top: .28em;
 
   background:
     linear-gradient(
       to right,
       transparent,
-      rgba(56, 32, 17, .42),
+      rgba(56, 32, 17, .4),
       transparent
     );
 }
 
 .song-hit-target.visible {
-  opacity: .96;
-
+  opacity: .97;
   pointer-events: auto;
 
   transform:
-    translateY(0)
+    translate(-50%, 0)
     rotate(-3deg);
 }
 
 .song-hit-target:hover,
 .song-hit-target:focus-visible {
-  background:
-    rgba(55, 31, 15, .055);
-
-  box-shadow:
-    0 0 0 1px
-    rgba(72, 42, 22, .14);
-
+  filter: brightness(.82);
   outline: none;
 }
 
+.song-hit-target:active,
 .song-hit-target.pressed {
-  filter:
-    brightness(.72);
+  filter: brightness(.65);
+
+  transform:
+    translate(-50%, 2px)
+    rotate(-3deg)
+    scale(.96);
 }
 
+/* Desktop */
+@media (min-width: 701px) and (orientation: landscape) {
+  .song-hit-target {
+    left: 52.5%;
+    top: 74%;
+    width: 18%;
+    font-size: 3.25cqw;
+  }
+}
+
+/* iPhone / portrait */
+@media (max-width: 700px), (orientation: portrait) {
+  .song-hit-target {
+    left: 52.5%;
+    top: 74%;
+    width: 19%;
+    font-size: 3.35cqw;
+  }
+}
+
+/* Small iPhones */
+@media (max-width: 390px) {
+  .song-hit-target {
+    left: 52.5%;
+    top: 74%;
+    width: 20%;
+    font-size: 3.25cqw;
+  }
+}
 /* =========================================================
    READING SHADE
    ========================================================= */
@@ -602,13 +675,14 @@ body {
   }
 
   .song-hit-target {
-    left: 42.5%;
-    top: 73.8%;
+    left: 55%;
+    top: 73.2%;
 
-    width: 25%;
-    min-height: 4.8%;
+    width: 20.5%;
+    min-height: 8.1%;
 
-    font-size: 3.2cqw;
+    font-size:
+      3.35cqw;
   }
 }
 
@@ -618,10 +692,14 @@ body {
 
 @media (max-width: 700px), (orientation: portrait) {
   .scene-canvas {
-    height: 100dvh;
-    min-height: 100svh;
+    height:
+      100dvh;
 
-    width: auto;
+    min-height:
+      100svh;
+
+    width:
+      auto;
   }
 
   .experience.reading .scene-canvas {
@@ -631,13 +709,14 @@ body {
   }
 
   .song-hit-target {
-    left: 42%;
-    top: 73.8%;
+    left: 55%;
+    top: 73.2%;
 
-    width: 26%;
-    min-height: 4.8%;
+    width: 20.5%;
+    min-height: 8.1%;
 
-    font-size: 3.25cqw;
+    font-size:
+      3.35cqw;
   }
 }
 
@@ -647,12 +726,17 @@ body {
 
 @media (max-width: 390px) {
   .song-hit-target {
-    left: 41.5%;
-    top: 73.8%;
+    left:
+      55%;
 
-    width: 27%;
+    top:
+      73.2%;
 
-    font-size: 3.15cqw;
+    width:
+      21%;
+
+    font-size:
+      3.25cqw;
   }
 }
 

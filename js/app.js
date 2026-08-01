@@ -66,12 +66,21 @@ async function playOpening() {
 
   songLink.disabled = true;
 
-  await sleep(650);
+  await sleep(250);
 
   try {
     matchSound.volume = 0.55;
-    matchSound.play().catch(() => {});
-  } catch (_) {}
+
+    // The source recording's main match strike begins near 1.6 seconds.
+    // Start at 1.50 so the strike lands as the room begins to brighten.
+    matchSound.currentTime = 1.50;
+
+    await matchSound.play();
+  } catch (_) {
+    // Some mobile browsers may block autoplay. The visual sequence continues.
+  }
+
+  await sleep(80);
 
   blackout.classList.add("open");
   experience.classList.add("room-visible");
