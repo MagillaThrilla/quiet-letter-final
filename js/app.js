@@ -182,8 +182,8 @@ async function playEnding(event) {
 
   await sleep(3100);
 
-  // Universal YouTube link: app when supported, browser otherwise.
-  window.location.assign("https://youtu.be/UCqQ0itHl1A");
+    // Universal YouTube link: app when supported, browser otherwise.
+    window.location.assign("https://youtu.be/2PrNmpT_aFE");
 }
 
 window.addEventListener("load", playOpening, { once: true });
