@@ -521,7 +521,7 @@ body {
     "Times New Roman",
     serif;
 
-  font-size: .28em;
+  font-size: .35em;
   font-style: italic;
   font-weight: 600;
 
@@ -753,4 +753,11 @@ body {
     animation-duration:
       .01ms !important;
   }
+}
+/* MAKE SONG LINK MORE VISIBLE */
+.song-hit-target {
+    top: 69% !important;
+    left: 57% !important;
+    width: 30% !important;
+    font-size: 4.5cqw !important;
 }
