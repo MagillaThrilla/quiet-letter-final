@@ -1,75 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#020100">
-      <meta name="robots" content="noindex, nofollow">
-  <title>Quiet Letter</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=pixel-exact-5">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+
+  <title>Thank You for Visiting</title>
+  <meta
+    name="description"
+    content="A quiet closing page."
+  />
+
+  <script src="config.js"></script>
+  <link rel="stylesheet" href="styles.css?v=footer-reveal-20261119" />
 </head>
+
 <body>
-  <main class="experience" id="experience" aria-label="A quiet letter">
-    <div class="ambient-background" aria-hidden="true"></div>
+  <main class="retirement-page" aria-label="Quiet Letter retirement page">
+    <div class="artwork-stage">
+    <img
+      class="retirement-image"
+      src="assets/final-background.jpg?v=2"
+      alt="Thank you for visiting. This page was once part of a very personal chapter of my life. That chapter has now come to a peaceful close. I am grateful for the memories, the lessons, and the people who shaped the person I am today. May we all find peace, healing, and happiness as we continue our own journeys. Take care. — Daniel"
+    />
 
-    <section class="scene-frame" aria-label="Candlelit desk and letter">
-      <div class="scene-canvas" id="sceneCanvas">
-        <!-- The exact approved final image is the foundation. -->
-        <img
-          class="scene-image approved-final"
-          src="assets/approved-final.jpg?v=pixel-exact-5"
-          alt=""
-          aria-hidden="true"
-          fetchpriority="high"
-        >
-
-        <!--
-          Each cover is the exact blank scene, masked to one element.
-          Removing a cover reveals the exact approved pixels beneath it.
-        -->
-        <img class="scene-image cover cover-salutation" src="assets/blank-room.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-        <img class="scene-image cover cover-paragraph-1" src="assets/blank-room.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-        <img class="scene-image cover cover-paragraph-2" src="assets/blank-room.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-        <img class="scene-image cover cover-paragraph-3" src="assets/blank-room.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-        <img class="scene-image cover cover-closing" src="assets/blank-room.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-        <img class="scene-image cover cover-signature" src="assets/blank-room.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-        <img class="scene-image cover cover-daniel" src="assets/blank-room.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-        <div class="cover cover-angela" aria-hidden="true">
-          <img class="scene-image angela-blank-base" src="assets/blank-room.jpg?v=pixel-exact-5" alt="">
-          <div class="random-pen-concealer">
-            <img class="scene-image" src="assets/blank-room.jpg?v=pixel-exact-5" alt="">
-          </div>
-        </div>
-
-        <img class="scene-image cover cover-link" src="assets/blank-room.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-
-        <!-- The approved fountain pen remains visible for the entire scene. -->
-        <img class="scene-image correct-pen" src="assets/approved-final.jpg?v=pixel-exact-5" alt="" aria-hidden="true">
-
-        <!-- Transparent hit target aligned over the handwritten title in the approved artwork. -->
-        <button
-          class="song-hit-target"
-          id="songLink"
-          type="button"
-          aria-label="Open I'll Love You From Here"
-        >
-          <span class="song-title-line">I'll Love You</span>
-          <span class="song-title-line">From Here</span>
-          <span class="song-action">Tap to listen</span>
-        </button>
-      </div>
-    </section>
-
-    <div class="reading-shade" aria-hidden="true"></div>
-    <div class="blackout" id="blackout" aria-hidden="true"></div>
-
-    <audio id="matchSound" preload="auto" src="assets/Match_Strike.mp3"></audio>
+    <div class="final-blackout" aria-hidden="true"></div>
+    </div>
   </main>
+  <footer class="keepsake-footer" aria-label="Art that remains">
+    <p class="footer-introduction">Some stories become art. These pieces remain.</p>
+    <nav class="keepsake-links" aria-label="Songs and memories">
+      <a class="keepsake-link song-link" href="#song-url-needed" aria-label="I'll Love You From Here — Original Song on YouTube">
+        <img class="platform-icon" src="assets/youtube.svg" alt="" width="20" height="20" />
+        <span class="link-copy"><span class="link-title">I'll Love You From Here</span><span class="link-subtitle">ORIGINAL SONG</span></span>
+      </a>
+      <a class="keepsake-link pinterest-link" href="#pinterest-board-url-needed" aria-label="In His Time — Visual Journey, entire Pinterest board">
+        <img class="platform-icon" src="assets/pinterest.svg" alt="" width="20" height="20" />
+        <span class="link-copy"><span class="link-title">In His Time</span><span class="link-subtitle">VISUAL JOURNEY</span></span>
+      </a>
+    </nav>
+  </footer>
 
-  <script src="js/app.js?v=pixel-exact-5"></script>
+  <noscript>
+    <style>
+      .retirement-image {
+        opacity: 1 !important;
+        animation: none !important;
+      }
+
+      .final-blackout {
+        display: none !important;
+      }
+    </style>
+  </noscript>
+
+  <dialog id="song-url-needed" class="url-notice" aria-labelledby="song-notice-title">
+    <h1 id="song-notice-title">I'll Love You From Here</h1>
+    <p>The song or video link has not been added yet.</p>
+    <form method="dialog"><button>Close</button></form>
+  </dialog>
+  <dialog id="pinterest-board-url-needed" class="url-notice" aria-labelledby="board-notice-title">
+    <h1 id="board-notice-title">In His Time</h1>
+    <p>The Pinterest countdown board link has not been added yet.</p>
+    <form method="dialog"><button>Close</button></form>
+  </dialog>
+  <!-- Cloudflare: preserve automatic Web Analytics injection on the existing
+       site. This source contained no manual beacon or analytics token. -->
+  <script src="script.js"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "fe39ea5b54634ebaba4fce02b7535262"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -1,0 +1,7 @@
+Replace this file with your finished baked image.
+
+Required filename:
+final-background.jpg
+
+Recommended dimensions:
+2560 × 3840 pixels
